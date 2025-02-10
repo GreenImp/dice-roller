@@ -1,13 +1,13 @@
-import StandardDice from '../src/dice/StandardDice.js';
-import FudgeDice from '../src/dice/FudgeDice.js';
-import PercentileDice from '../src/dice/PercentileDice.js';
-import RequiredArgumentError from '../src/exceptions/RequiredArgumentError.js';
-import KeepModifier from '../src/modifiers/KeepModifier.js';
-import Modifier from '../src/modifiers/Modifier.js';
-import ResultGroup from '../src/results/ResultGroup.js';
-import RollResults from '../src/results/RollResults.js';
-import RollGroup from '../src/RollGroup.js';
-import Description from '../src/Description.js';
+import StandardDice from '../src/dice/StandardDice.ts';
+import FudgeDice from '../src/dice/FudgeDice.ts';
+import PercentileDice from '../src/dice/PercentileDice.ts';
+import RequiredArgumentError from '../src/exceptions/RequiredArgumentError.ts';
+import KeepModifier from '../src/modifiers/KeepModifier.ts';
+import Modifier from '../src/modifiers/Modifier.ts';
+import ResultGroup from '../src/results/ResultGroup.ts';
+import RollResults from '../src/results/RollResults.ts';
+import RollGroup from '../src/RollGroup.ts';
+import Description from '../src/Description.ts';
 
 describe('RollGroup', () => {
   let group;

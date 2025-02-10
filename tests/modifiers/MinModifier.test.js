@@ -1,6 +1,6 @@
-import { MinModifier, Modifier } from '../../src/modifiers/index.js';
-import { StandardDice } from '../../src/dice/index.js';
-import RollResults from '../../src/results/RollResults.js';
+import { MinModifier, Modifier } from '../../src/modifiers/index.ts';
+import { StandardDice } from '../../src/dice/index.ts';
+import RollResults from '../../src/results/RollResults.ts';
 
 describe('MinModifier', () => {
   let mod;

@@ -1,9 +1,9 @@
-import { FudgeDice, PercentileDice, StandardDice } from '../../src/dice/index.js';
-import { DropModifier, KeepModifier, SortingModifier } from '../../src/modifiers/index.js';
+import { FudgeDice, PercentileDice, StandardDice } from '../../src/dice/index.ts';
+import { DropModifier, KeepModifier, SortingModifier } from '../../src/modifiers/index.ts';
 import { SyntaxError } from '../../src/parser/grammars/grammar.js';
-import Parser from '../../src/parser/Parser.js';
-import RollGroup from '../../src/RollGroup.js';
-import Description from '../../src/Description.js';
+import Parser from '../../src/parser/Parser.ts';
+import RollGroup from '../../src/RollGroup.ts';
+import Description from '../../src/Description.ts';
 
 describe('Parsing', () => {
   describe('Roll groups', () => {

@@ -1,8 +1,8 @@
-import { StandardDice } from '../src/dice/index.js';
-import DiceRoll from '../src/DiceRoll.js';
-import DiceRoller from '../src/DiceRoller.js';
-import RollResult from '../src/results/RollResult.js';
-import RollResults from '../src/results/RollResults.js';
+import { StandardDice } from '../src/dice/index.ts';
+import DiceRoll from '../src/DiceRoll.ts';
+import DiceRoller from '../src/DiceRoller.ts';
+import RollResult from '../src/results/RollResult.ts';
+import RollResults from '../src/results/RollResults.ts';
 
 describe('Rolling', () => {
   let roller;

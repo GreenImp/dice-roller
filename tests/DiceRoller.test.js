@@ -1,7 +1,7 @@
-import { DataFormatError, NotationError, RequiredArgumentError } from '../src/exceptions/index.js';
-import DiceRoll from '../src/DiceRoll.js';
-import DiceRoller from '../src/DiceRoller.js';
-import exportFormats from '../src/utilities/ExportFormats.js';
+import { DataFormatError, NotationError, RequiredArgumentError } from '../src/exceptions/index.ts';
+import DiceRoll from '../src/DiceRoll.ts';
+import DiceRoller from '../src/DiceRoller.ts';
+import exportFormats from '../src/utilities/ExportFormats.ts';
 
 describe('DiceRoller', () => {
   let roller;

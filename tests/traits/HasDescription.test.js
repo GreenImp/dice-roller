@@ -1,5 +1,5 @@
-import HasDescription from '../../src/traits/HasDescription.js';
-import Description from '../../src/Description.js';
+import HasDescription from '../../src/traits/HasDescription.ts';
+import Description from '../../src/Description.ts';
 
 describe('HasDescription', () => {
   describe('Initialisation', () => {

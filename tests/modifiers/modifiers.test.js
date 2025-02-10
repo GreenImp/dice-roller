@@ -1,13 +1,13 @@
-import { StandardDice } from '../../src/dice/index.js';
-import DiceRoll from '../../src/DiceRoll.js';
+import { StandardDice } from '../../src/dice/index.ts';
+import DiceRoll from '../../src/DiceRoll.ts';
 import {
   DropModifier,
   ExplodeModifier,
   KeepModifier,
   ReRollModifier,
   UniqueModifier,
-} from '../../src/modifiers/index.js';
-import RollResult from '../../src/results/RollResult.js';
+} from '../../src/modifiers/index.ts';
+import RollResult from '../../src/results/RollResult.ts';
 
 describe('Modifiers', () => {
   test('does not duplicate drop modifier', () => {
