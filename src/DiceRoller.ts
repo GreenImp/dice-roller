@@ -2,6 +2,8 @@ import { DataFormatError, RequiredArgumentError } from './exceptions/index';
 import { isBase64, isJson } from './utilities/utils';
 import DiceRoll from './DiceRoll';
 import { ExportFormat } from "./types/Enums/ExportFormat";
+import { Exportable } from "./types/Interfaces/Exportable";
+import { Importable } from "./types/Interfaces/Importable";
 
 /**
  * A `DiceRoller` handles dice rolling functionality, keeps a history of rolls and can output logs
@@ -9,7 +11,7 @@ import { ExportFormat } from "./types/Enums/ExportFormat";
  *
  * @see {@link DiceRoll} if you don't need to keep a log history of rolls
  */
-class DiceRoller {
+class DiceRoller implements Exportable, Importable<DiceRoll[]|{log: DiceRoll[]}|string, DiceRoll[]> {
   readonly #log:DiceRoll[] = [];
 
   /**

@@ -16,6 +16,7 @@ import { ResultCollection } from "./types/Interfaces/Results/ResultCollection";
 import { ExportFormat } from "./types/Enums/ExportFormat";
 import { ModelType } from "./types/Enums/ModelType";
 import { DiceRollJsonOutput } from "./types/Types/Json/DiceRollJsonOutput";
+import { Exportable } from "./types/Interfaces/Exportable";
 
 /**
  * Calculate the total of all the results, fixed to a max of 2 digits after the decimal point.
@@ -33,7 +34,7 @@ const calculateTotal = (results?: ExpressionResult): number => toFixed(results?.
  *
  * @see {@link DiceRoller} if you need to keep a history of rolls
  */
-class DiceRoll implements Readonly<HasNotation> {
+class DiceRoll implements Exportable, Readonly<HasNotation> {
   readonly #expressions: unknown[];
   readonly #notation!: string;
 

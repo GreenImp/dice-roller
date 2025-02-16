@@ -255,7 +255,7 @@ class StandardDice extends HasDescription implements Dice {
    *  type: string
    * }}
    */
-  toJSON(): DiceJsonOutput {
+  override toJSON(): DiceJsonOutput {
     const {
       average, max, min, modifiers, name, notation, qty, sides,
     } = this;
@@ -283,7 +283,7 @@ class StandardDice extends HasDescription implements Dice {
    *
    * @returns {string}
    */
-  toString(): string {
+  override toString(): string {
     return `${this.notation}${this.description ? ` ${this.description}` : ''}`;
   }
 }
