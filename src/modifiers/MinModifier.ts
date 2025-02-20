@@ -21,7 +21,7 @@ class MinModifier extends Modifier {
    *
    * @type {number}
    */
-  static order: number = 1;
+  static override order: number = 1;
 
   #min!: number;
 
@@ -68,7 +68,7 @@ class MinModifier extends Modifier {
    *
    * @returns {string} 'min'
    */
-  get name(): string {
+  override get name(): string {
     return 'min';
   }
   /* eslint-enable class-methods-use-this */
@@ -78,7 +78,7 @@ class MinModifier extends Modifier {
    *
    * @returns {string}
    */
-  get notation(): string {
+  override get notation(): string {
     return `min${this.min}`;
   }
 
@@ -90,7 +90,7 @@ class MinModifier extends Modifier {
    *
    * @returns {RollResults} The modified results
    */
-  run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
+  override run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
     if (results instanceof ResultGroup) {
       return results;
     }
@@ -120,7 +120,7 @@ class MinModifier extends Modifier {
    *
    * @returns {{notation: string, name: string, type: string, min: Number}}
    */
-  toJSON(): ModifierJsonOutput & {min: number} {
+  override toJSON(): ModifierJsonOutput & {min: number} {
     const { min } = this;
 
     return Object.assign(

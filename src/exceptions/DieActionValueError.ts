@@ -14,7 +14,7 @@ class DieActionValueError extends Error {
    * @param {string|null} [action=null] The invalid action
    */
   constructor(die: Dice, action: string|null = null) {
-    super(`Die "${die}" must have more than 1 possible value to ${action || 'do this action'}`);
+    super(`Die "${die}" must have more than 1 possible value to ${action ?? 'do this action'}`);
 
     // Maintains proper stack trace for where our error was thrown (only available on V8)
     if (Error.captureStackTrace) {

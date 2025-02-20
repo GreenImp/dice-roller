@@ -8,7 +8,7 @@ import { Modifiable } from "../types/Interfaces/Modifiable";
 import { ExpressionResult } from "../types/Interfaces/Results/ExpressionResult";
 import { SingleResult } from "../types/Interfaces/Results/SingleResult";
 import { ResultValue } from "../types/Interfaces/Results/ResultValue";
-import { ResultIndex } from "../types/Types/ResultIndex";
+import { ResultIndex } from "../types/Interfaces/ResultIndex";
 import { ModifierJsonOutput } from "../types/Types/Json/ModifierJsonOutput";
 
 // @todo rename "end" to "target" / "rangeTarget" or similar
@@ -27,7 +27,7 @@ class KeepModifier extends Modifier {
    *
    * @type {number}
    */
-  static order: number = 6;
+  static override order: number = 6;
 
   #end!: RangeEnd;
   #qty!: number;
@@ -78,7 +78,7 @@ class KeepModifier extends Modifier {
    *
    * @returns {string} 'keep-l' or 'keep-h'
    */
-  get name(): string {
+  override get name(): string {
     return `keep-${this.end}`;
   }
 
@@ -87,7 +87,7 @@ class KeepModifier extends Modifier {
    *
    * @returns {string}
    */
-  get notation(): string {
+  override get notation(): string {
     return `k${this.end}${this.qty}`;
   }
 
@@ -142,8 +142,8 @@ class KeepModifier extends Modifier {
    *
    * @returns {ResultGroup|RollResults} The modified results
    */
-  run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
-    let modifiedRolls: Array<ExpressionResult|ResultCollection|ResultValue|number|string>;
+  override run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
+    let modifiedRolls: (ExpressionResult|ResultCollection|ResultValue|number|string)[];
     let rollIndexes: ResultIndex[] = [];
 
     if (results instanceof ResultGroup) {
@@ -210,7 +210,7 @@ class KeepModifier extends Modifier {
         roll = modifiedRolls[rollIndex] as ResultValue;
       }
 
-      roll.modifiers?.add('drop');
+      roll.modifiers.add('drop');
       roll.useInTotal = false;
     });
 
@@ -224,7 +224,7 @@ class KeepModifier extends Modifier {
    *
    * @returns {{notation: string, name: string, type: string, qty: number, end: string}}
    */
-  toJSON(): ModifierJsonOutput & {end: RangeEnd, qty: number} {
+  override toJSON(): ModifierJsonOutput & {end: RangeEnd, qty: number} {
     const { end, qty } = this;
 
     return Object.assign(

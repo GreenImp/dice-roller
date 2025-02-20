@@ -21,7 +21,7 @@ class MaxModifier extends Modifier {
    *
    * @type {number}
    */
-  static order: number = 2;
+  static override order: number = 2;
 
   #max!: number;
 
@@ -68,7 +68,7 @@ class MaxModifier extends Modifier {
    *
    * @returns {string} 'max'
    */
-  get name(): string {
+  override get name(): string {
     return 'max';
   }
   /* eslint-enable class-methods-use-this */
@@ -78,7 +78,7 @@ class MaxModifier extends Modifier {
    *
    * @returns {string}
    */
-  get notation(): string {
+  override get notation(): string {
     return `max${this.max}`;
   }
 
@@ -90,7 +90,7 @@ class MaxModifier extends Modifier {
    *
    * @returns {RollResults} The modified results
    */
-  run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
+  override run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
     if (results instanceof ResultGroup) {
       return results;
     }
@@ -120,7 +120,7 @@ class MaxModifier extends Modifier {
    *
    * @returns {{notation: string, name: string, type: string, max: Number}}
    */
-  toJSON(): ModifierJsonOutput & {max: number} {
+  override toJSON(): ModifierJsonOutput & {max: number} {
     const { max } = this;
 
     return Object.assign(

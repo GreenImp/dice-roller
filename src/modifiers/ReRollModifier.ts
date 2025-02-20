@@ -24,7 +24,7 @@ class ReRollModifier extends ComparisonModifier {
    *
    * @type {number}
    */
-  static order: number = 4;
+  static override order: number = 4;
 
   /**
    * Create a `ReRollModifier` instance.
@@ -44,7 +44,7 @@ class ReRollModifier extends ComparisonModifier {
    *
    * @returns {string} 're-roll'
    */
-  get name(): string {
+  override get name(): string {
     return 're-roll';
   }
   /* eslint-enable class-methods-use-this */
@@ -54,7 +54,7 @@ class ReRollModifier extends ComparisonModifier {
    *
    * @returns {string}
    */
-  get notation(): string {
+  override get notation(): string {
     return `r${this.once ? 'o' : ''}${super.notation}`;
   }
 
@@ -84,7 +84,7 @@ class ReRollModifier extends ComparisonModifier {
    *
    * @returns {array}
    */
-  protected defaultComparePoint(_context: Modifiable): [string, number]|null {
+  protected override defaultComparePoint(_context: Modifiable): [string, number]|null {
     if ('min' in _context) {
       return ['=', _context.min as number];
     }
@@ -101,7 +101,7 @@ class ReRollModifier extends ComparisonModifier {
    *
    * @returns {RollResults} The modified results
    */
-  run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
+  override run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
     super.run(results, _context);
 
     const isDice = _context instanceof StandardDice;
@@ -158,7 +158,7 @@ class ReRollModifier extends ComparisonModifier {
    *  once: boolean
    * }}
    */
-  toJSON(): ModifierJsonOutput & {once: boolean} {
+  override toJSON(): ModifierJsonOutput & {once: boolean} {
     const { once } = this;
 
     return Object.assign(

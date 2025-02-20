@@ -1,11 +1,8 @@
 import { Stringable } from "./Stringable";
 import { JsonSerializable } from "./JsonSerializable";
-import { ModelType } from "../Enums/ModelType";
-import Description from "../../Description";
 import { Describable } from "./Describable";
 import { Modifiable } from "./Modifiable";
 import { HasNotation } from "./HasNotation";
-import { ModifierCollection } from "../Types/ModifierCollection";
 import { Nameable } from "./Nameable";
 import { ResultCollection } from "./Results/ResultCollection";
 import { SingleResult } from "./Results/SingleResult";

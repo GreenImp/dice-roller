@@ -188,7 +188,7 @@ class ResultGroup implements ExpressionResult {
    * @throws {TypeError} Results must be an array
    */
   set results(results: RollResult[]) {
-    if (!results || !Array.isArray(results)) {
+    if (!Array.isArray(results)) {
       // results is not an array
       throw new TypeError(`results must be an array: ${results}`);
     }

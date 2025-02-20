@@ -27,7 +27,7 @@ const flags = {
  */
 const getModifierFlags = (...modifiers: Modifier[]|string[]): string => (
   // @todo need a better way of mapping modifiers to symbols
-  [...modifiers].reduce((acc, modifier) => {
+  [...modifiers].reduce((acc: string, modifier) => {
     let name: string;
 
     if (typeof modifier === 'string') {

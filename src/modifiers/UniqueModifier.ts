@@ -26,7 +26,7 @@ class UniqueModifier extends ComparisonModifier {
    *
    * @type {number}
    */
-  static order: number = 5;
+  static override order: number = 5;
 
   #once: boolean = false;
 
@@ -48,7 +48,7 @@ class UniqueModifier extends ComparisonModifier {
    *
    * @returns {string} 'unique'
    */
-  get name(): string {
+  override get name(): string {
     return 'unique';
   }
   /* eslint-enable class-methods-use-this */
@@ -58,7 +58,7 @@ class UniqueModifier extends ComparisonModifier {
    *
    * @returns {string}
    */
-  get notation(): string {
+  override get notation(): string {
     return `u${this.once ? 'o' : ''}${super.notation}`;
   }
 
@@ -88,7 +88,7 @@ class UniqueModifier extends ComparisonModifier {
    *
    * @returns {RollResults} The modified results
    */
-  run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
+  override run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
     const isDice = _context instanceof StandardDice;
 
     if (!isDice || !(results instanceof RollResults)){
@@ -147,7 +147,7 @@ class UniqueModifier extends ComparisonModifier {
    *  once: boolean
    * }}
    */
-  toJSON(): ModifierJsonOutput & {once: boolean} {
+  override toJSON(): ModifierJsonOutput & {once: boolean} {
     const { once } = this;
 
     return Object.assign(

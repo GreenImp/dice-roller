@@ -68,7 +68,7 @@ class RollResults implements ResultCollection {
    * @throws {TypeError} Rolls must be an array
    */
   set rolls(rolls: SingleResult[]|number[]) {
-    if (!rolls || !Array.isArray(rolls)) {
+    if (!Array.isArray(rolls)) {
       // roll is not an array
       throw new TypeError(`rolls must be an array: ${rolls}`);
     }

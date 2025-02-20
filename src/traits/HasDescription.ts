@@ -21,7 +21,7 @@ class HasDescription implements Describable, JsonSerializable, Stringable {
    * @return {Description|null}
    */
   get description(): Description|null {
-    return this.#description || null;
+    return this.#description ?? null;
   }
 
   /**

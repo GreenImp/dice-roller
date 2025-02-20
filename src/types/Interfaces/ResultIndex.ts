@@ -1,4 +1,4 @@
-export type ResultIndex = {
+export interface ResultIndex {
   value: number,
   index: number|number[],
-};
+}

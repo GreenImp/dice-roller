@@ -1,6 +1,6 @@
 import KeepModifier from './KeepModifier';
 import { RangeEnd } from "../types/Enums/RangeEnd";
-import { ResultIndex } from "../types/Types/ResultIndex";
+import { ResultIndex } from "../types/Interfaces/ResultIndex";
 
 // @todo rename "end" to "target" / "rangeTarget" or similar
 

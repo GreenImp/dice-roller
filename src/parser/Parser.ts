@@ -33,7 +33,7 @@ class Parser {
     }
 
     // parse the notation
-    return parser.parse(notation);
+    return parser.parse(notation) as unknown[];
   }
 }
 

@@ -56,7 +56,7 @@ class RollResult implements SingleResult {
     if (isNumeric(value)) {
       this.#initialValue = Number(value);
 
-      this.modifiers = modifiers || [];
+      this.modifiers = modifiers ?? [];
       this.useInTotal = useInTotal;
     } else if (value && (typeof value === 'object') && !Array.isArray(value)) {
       // ensure that we have a valid value
@@ -81,7 +81,7 @@ class RollResult implements SingleResult {
         this.calculationValue = value.calculationValue;
       }
 
-      this.modifiers = value.modifiers || modifiers || [];
+      this.modifiers = value.modifiers ?? modifiers ?? [];
       this.useInTotal = (typeof value.useInTotal === 'boolean') ? value.useInTotal : (useInTotal || false);
     } else if (value === Infinity) {
       throw new RangeError('Result value must be a finite number');

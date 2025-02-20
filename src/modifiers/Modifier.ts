@@ -80,7 +80,7 @@ class Modifier implements IModifier {
    * @returns {void}
    */
   protected useDefaultsIfNeeded(_context: Modifiable): void {
-    (Object.entries(this.defaults(_context)) as [keyof this, any][])
+    (Object.entries(this.defaults(_context)) as [keyof this, unknown][])
       .forEach(([field, value]) => {
         if (typeof this[field] === 'undefined') {
           this[field] = value;

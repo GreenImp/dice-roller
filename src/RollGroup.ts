@@ -66,7 +66,7 @@ class RollGroup extends HasDescription {
    * @returns {Array.<Array.<StandardDice|string|number>>}
    */
   get expressions(): ExpressionCollection {
-    return [...(this.#expressions || [])];
+    return [...(this.#expressions ?? [])];
   }
 
   /**
@@ -133,9 +133,9 @@ class RollGroup extends HasDescription {
       modifiers = value;
     } else if (Array.isArray(value)) {
       // loop through and get the modifier name of each item and use it as the map key
-      modifiers = new Map(value.map((modifier) => [modifier.name, modifier]));
+      modifiers = new Map(value.map((modifier: Modifier) => [modifier.name, modifier]));
     } else if (typeof value === 'object') {
-      modifiers = new Map(Object.entries(value));
+      modifiers = new Map(Object.entries(value)) as ModifierCollection;
     } else {
       throw new TypeError('modifiers should be a Map, array, or an Object containing Modifiers');
     }
@@ -162,7 +162,7 @@ class RollGroup extends HasDescription {
 
     notation = `{${notation}}`;
 
-    if (this.modifiers && this.modifiers.size) {
+    if (this.modifiers.size) {
       notation += [...this.modifiers.values()]
         .reduce((acc, modifier) => acc + modifier.notation, '');
     }
@@ -273,7 +273,7 @@ class RollGroup extends HasDescription {
    *  expressions: Array.<Array.<StandardDice|string|number>>
    * }}
    */
-  toJSON(): RollGroupJsonOutput {
+  override toJSON(): RollGroupJsonOutput {
     const { modifiers, notation, expressions } = this;
 
     return Object.assign(
@@ -297,7 +297,7 @@ class RollGroup extends HasDescription {
    *
    * @returns {string}
    */
-  toString(): string {
+  override toString(): string {
     return `${this.notation}${this.description ? ` ${this.description}` : ''}`;
   }
 }

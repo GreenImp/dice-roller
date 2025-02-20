@@ -21,7 +21,7 @@ class CriticalFailureModifier extends ComparisonModifier {
    *
    * @type {number}
    */
-  static order: number = 10;
+  static override order: number = 10;
 
   /**
    * Create a `CriticalFailureModifier` instance.
@@ -40,7 +40,7 @@ class CriticalFailureModifier extends ComparisonModifier {
    *
    * @returns {string} 'critical-failure'
    */
-  get name(): string {
+  override get name(): string {
     return 'critical-failure';
   }
   /* eslint-enable class-methods-use-this */
@@ -50,7 +50,7 @@ class CriticalFailureModifier extends ComparisonModifier {
    *
    * @returns {string}
    */
-  get notation(): string {
+  override get notation(): string {
     return `cf${super.notation}`;
   }
 
@@ -62,7 +62,7 @@ class CriticalFailureModifier extends ComparisonModifier {
    *
    * @returns {array}
    */
-  protected defaultComparePoint(_context: Modifiable): [string, number]|null {
+  protected override defaultComparePoint(_context: Modifiable): [string, number]|null {
     if ('min' in _context) {
       return ['=', _context.min as number];
     }
@@ -79,7 +79,7 @@ class CriticalFailureModifier extends ComparisonModifier {
    *
    * @returns {RollResults} The modified results
    */
-  run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
+  override run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
     super.run(results, _context);
 
     if (results instanceof RollResults) {

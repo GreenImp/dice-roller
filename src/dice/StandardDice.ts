@@ -181,7 +181,7 @@ class StandardDice extends HasDescription implements Dice {
   get notation(): string {
     let notation = `${this.qty}d${this.sides}`;
 
-    if (this.modifiers && this.modifiers.size) {
+    if (this.modifiers.size) {
       notation += [...this.modifiers.values()].reduce((acc, modifier) => acc + modifier.notation, '');
     }
 

@@ -7,7 +7,7 @@ import Parser from './parser/Parser';
 import RollGroup from './RollGroup';
 import RollResults from './results/RollResults';
 import ResultGroup from './results/ResultGroup';
-import { RollOutputData } from "./types/Types/RollOutputData";
+import { RollOutputData } from "./types/Interfaces/RollOutputData";
 import { HasNotation } from "./types/Interfaces/HasNotation";
 import { ExpressionResult } from "./types/Interfaces/Results/ExpressionResult";
 import { Engine } from "./types/Interfaces/NumberGenerator/Engines/Engine";

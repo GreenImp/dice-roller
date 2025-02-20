@@ -99,7 +99,7 @@ class DiceRoller implements Exportable, Importable<DiceRoll[]|{log: DiceRoll[]}|
       case ExportFormat.Json:
         return JSON.stringify(this);
       case ExportFormat.Object:
-        return JSON.parse(this.export(ExportFormat.Json) as string);
+        return JSON.parse(this.export(ExportFormat.Json) as string) as object;
       default:
         throw new TypeError(`Invalid export format "${format}"`);
     }

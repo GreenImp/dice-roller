@@ -25,7 +25,7 @@ class TargetModifier extends ComparisonModifier {
    *
    * @type {number}
    */
-  static order: number = 8;
+  static override order: number = 8;
 
   #failComparator: Comparator|null = null;
 
@@ -65,7 +65,7 @@ class TargetModifier extends ComparisonModifier {
       throw new TypeError('failure comparePoint must be instance of ComparePoint or null');
     }
 
-    this.#failComparator = comparePoint || null;
+    this.#failComparator = comparePoint ?? null;
   }
 
   /* eslint-disable class-methods-use-this */
@@ -74,7 +74,7 @@ class TargetModifier extends ComparisonModifier {
    *
    * @returns {string} 'target'
    */
-  get name(): string {
+  override get name(): string {
     return 'target';
   }
   /* eslint-enable class-methods-use-this */
@@ -84,7 +84,7 @@ class TargetModifier extends ComparisonModifier {
    *
    * @returns {string}
    */
-  get notation(): string {
+  override get notation(): string {
     return `${super.notation}${this.failureComparePoint ? `f${this.failureComparePoint}` : ''}`;
   }
 
@@ -176,8 +176,8 @@ class TargetModifier extends ComparisonModifier {
    *
    * @returns {RollResults} The modified results
    */
-  run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
-    let rolls: Array<RollResult|SingleResult>;
+  override run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
+    let rolls: RollResult[]|SingleResult[];
 
     if (results instanceof ResultGroup) {
       rolls = results.results;
@@ -225,7 +225,7 @@ class TargetModifier extends ComparisonModifier {
    *  successComparePoint: ComparePoint
    * }}
    */
-  toJSON(): ModifierJsonOutput & {failureComparePoint: Comparator|null, successComparePoint: Comparator|null} {
+  override toJSON(): ModifierJsonOutput & {failureComparePoint: Comparator|null, successComparePoint: Comparator|null} {
     const { failureComparePoint, successComparePoint } = this;
     // get the inherited object, but remove the comparePoint property
     const { comparePoint, ...result } = super.toJSON();

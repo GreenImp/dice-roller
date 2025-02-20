@@ -64,7 +64,7 @@ class ComparisonModifier extends Modifier implements ComparatorModifier {
    *
    * @returns {string} 'comparison'
    */
-  get name(): string {
+  override get name(): string {
     return 'comparison';
   }
   /* eslint-enable class-methods-use-this */
@@ -74,7 +74,7 @@ class ComparisonModifier extends Modifier implements ComparatorModifier {
    *
    * @returns {string}
    */
-  get notation(): string {
+  override get notation(): string {
     return `${this.comparePoint || ''}`;
   }
 
@@ -86,7 +86,7 @@ class ComparisonModifier extends Modifier implements ComparatorModifier {
    *
    * @returns {null}
    */
-  protected defaultComparePoint(_context: Modifiable): [string, number]|null {
+  protected override defaultComparePoint(_context: Modifiable): [string, number]|null {
     return null;
   }
   /* eslint-enable class-methods-use-this */
@@ -98,7 +98,7 @@ class ComparisonModifier extends Modifier implements ComparatorModifier {
    *
    * @returns {object}
    */
-  protected defaults(_context: Modifiable): { [index: string]: unknown } {
+  protected override defaults(_context: Modifiable): { [index: string]: unknown } {
     const comparePointConfig = this.defaultComparePoint(_context);
 
     if (Array.isArray(comparePointConfig) && comparePointConfig.length === 2) {
@@ -133,7 +133,7 @@ class ComparisonModifier extends Modifier implements ComparatorModifier {
    *  comparePoint: (ComparePoint|undefined)
    * }}
    */
-  toJSON(): ModifierJsonOutput & {comparePoint?: Comparator|null} {
+  override toJSON(): ModifierJsonOutput & {comparePoint?: Comparator|null} {
     const { comparePoint } = this;
 
     return Object.assign(

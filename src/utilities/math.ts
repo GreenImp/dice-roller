@@ -61,7 +61,7 @@ const compareNumbers = (a: number, b: number, operator: ComparisonOperator): boo
  *
  * @returns {number} The result of the equation
  */
-const evaluate = (equation: string): number => mathEval(equation);
+const evaluate = (equation: string): number => mathEval(equation) as number;
 
 /**
  * Check if the given value is a valid finite number.

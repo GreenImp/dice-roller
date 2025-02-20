@@ -20,7 +20,7 @@ class SortingModifier extends Modifier {
    *
    * @type {number}
    */
-  static order: number = 11;
+  static override order: number = 11;
 
   #direction!: SortDirection;
 
@@ -67,7 +67,7 @@ class SortingModifier extends Modifier {
    *
    * @returns {string} 'sorting'
    */
-  get name(): string {
+  override get name(): string {
     return 'sorting';
   }
   /* eslint-enable class-methods-use-this */
@@ -77,7 +77,7 @@ class SortingModifier extends Modifier {
    *
    * @returns {string}
    */
-  get notation(): string {
+  override get notation(): string {
     return `s${this.direction}`;
   }
 
@@ -106,7 +106,7 @@ class SortingModifier extends Modifier {
     return a.value - (b as ResultValue|ResultCollection).value;
   }
 
-  #sortItems<T extends Array<ExpressionResult|SingleResult|ResultCollection|number|string>>(items: T): T {
+  #sortItems<T extends (ExpressionResult|SingleResult|ResultCollection|number|string)[]>(items: T): T {
     return items.sort((a, b) => {
       if (this.direction === SortDirection.Desc) {
         return this.#compareItems(b, a);
@@ -124,7 +124,7 @@ class SortingModifier extends Modifier {
    *
    * @returns {RollResults} The modified results
    */
-  run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
+  override run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
     /* eslint-disable no-param-reassign */
     if ('results' in results) {
       results.results = this.#sortItems(results.results);
@@ -156,7 +156,7 @@ class SortingModifier extends Modifier {
    *
    * @returns {{notation: string, name: string, type: string, direction: string}}
    */
-  toJSON(): ModifierJsonOutput & {direction: SortDirection} {
+  override toJSON(): ModifierJsonOutput & {direction: SortDirection} {
     const { direction } = this;
 
     return Object.assign(

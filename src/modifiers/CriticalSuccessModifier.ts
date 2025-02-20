@@ -21,7 +21,7 @@ class CriticalSuccessModifier extends ComparisonModifier {
    *
    * @type {number}
    */
-  static order: number = 9;
+  static override order: number = 9;
 
   /**
    * Create a `CriticalSuccessModifier` instance.
@@ -40,7 +40,7 @@ class CriticalSuccessModifier extends ComparisonModifier {
    *
    * @returns {string} 'critical-success'
    */
-  get name(): string {
+  override get name(): string {
     return 'critical-success';
   }
   /* eslint-enable class-methods-use-this */
@@ -50,7 +50,7 @@ class CriticalSuccessModifier extends ComparisonModifier {
    *
    * @returns {string}
    */
-  get notation(): string {
+  override get notation(): string {
     return `cs${super.notation}`;
   }
 
@@ -62,7 +62,7 @@ class CriticalSuccessModifier extends ComparisonModifier {
    *
    * @returns {array}
    */
-  protected defaultComparePoint(_context: Modifiable): [string, number]|null {
+  protected override defaultComparePoint(_context: Modifiable): [string, number]|null {
     if ('max' in _context) {
       return ['=', _context.max as number];
     }
@@ -79,7 +79,7 @@ class CriticalSuccessModifier extends ComparisonModifier {
    *
    * @returns {RollResults}
    */
-  run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
+  override run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
     super.run(results, _context);
 
     if (results instanceof RollResults) {

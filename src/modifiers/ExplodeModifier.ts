@@ -8,6 +8,7 @@ import { ResultCollection } from "../types/Interfaces/Results/ResultCollection";
 import StandardDice from "../dice/StandardDice";
 import RollResults from "../results/RollResults";
 import { ModifierJsonOutput } from "../types/Types/Json/ModifierJsonOutput";
+import { SingleResult } from "../types/Interfaces/Results/SingleResult";
 
 /**
  * An `ExplodeModifier` re-rolls dice that match a given test, and adds them to the results.
@@ -22,10 +23,10 @@ class ExplodeModifier extends ComparisonModifier {
    *
    * @type {number}
    */
-  static order: number = 3;
+  static override order: number = 3;
 
-  #compound: boolean;
-  #penetrate: boolean;
+  readonly #compound: boolean;
+  readonly #penetrate: boolean;
 
   /**
    * Create an `ExplodeModifier` instance
@@ -58,7 +59,7 @@ class ExplodeModifier extends ComparisonModifier {
    *
    * @returns {string} 'explode'
    */
-  get name(): string {
+  override get name(): string {
     return 'explode';
   }
   /* eslint-enable class-methods-use-this */
@@ -68,7 +69,7 @@ class ExplodeModifier extends ComparisonModifier {
    *
    * @returns {string}
    */
-  get notation(): string {
+  override get notation(): string {
     return `!${this.compound ? '!' : ''}${this.penetrate ? 'p' : ''}${super.notation}`;
   }
 
@@ -89,7 +90,7 @@ class ExplodeModifier extends ComparisonModifier {
    *
    * @returns {array}
    */
-  protected defaultComparePoint(_context: Modifiable): [string, number]|null {
+  protected override defaultComparePoint(_context: Modifiable): [string, number]|null {
     if ('max' in _context) {
       return ['=', _context.max as number];
     }
@@ -106,7 +107,7 @@ class ExplodeModifier extends ComparisonModifier {
    *
    * @returns {RollResults} The modified results
    */
-  run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
+  override run<T extends ExpressionResult | ResultCollection>(results: T, _context: Modifiable): T {
     super.run(results, _context);
 
     const isDice = _context instanceof StandardDice;
@@ -131,6 +132,11 @@ class ExplodeModifier extends ComparisonModifier {
         // explode if the value matches the compare point, and we haven't reached the max iterations
         for (let i = 0; (i < this.maxIterations) && this.isComparePoint(compareValue); i++) {
           const prevRoll = subRolls[subRolls.length - 1];
+
+          if (!prevRoll) {
+            continue;
+          }
+
           // roll the dice
           const rollResult = _context.rollOnce();
 
@@ -189,7 +195,7 @@ class ExplodeModifier extends ComparisonModifier {
    *  penetrate: boolean
    * }}
    */
-  toJSON(): ModifierJsonOutput & {compound: boolean, penetrate: boolean} {
+  override toJSON(): ModifierJsonOutput & {compound: boolean, penetrate: boolean} {
     const { compound, penetrate } = this;
 
     return Object.assign(
